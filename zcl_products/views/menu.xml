@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem action="zcl_product_normal_action_sell" id="menu_action_product_sub" parent="zcl_store.menu_action_store_parent" name="Products" groups="zcl_contacts.group_for_store"/>
+</odoo>

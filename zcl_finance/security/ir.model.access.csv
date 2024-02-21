@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_finance_finance,access.finance.finance,model_finance_finance,base.group_user,1,1,1,1
+access_bank_receipt,access.bank.receipt,model_bank_receipt,base.group_user,1,1,1,1
+access_bank_receipt_line,access.bank.receipt.line,model_bank_receipt_line,base.group_user,1,1,1,1
+access_bank_customer_invoice_wizard,access.bank.customer.invoice.wizard,model_bank_customer_invoice_wizard,base.group_user,1,1,1,1
+access_bank_customer_invoice_wizard_line,access.bank.customer.invoice.wizard.line,model_bank_customer_invoice_wizard_line,base.group_user,1,1,1,1
+access_journal_information_wizard,access.journal.information.wizard,model_journal_information_wizard,base.group_user,1,1,1,1

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--  Author       :  SAYOOJ T K  -->
+<!--  Copyright(c) :  2023-Present Zinfog Codelabs Pvt Ltd (<https://www.zinfog.com>).  -->
+<!--  License      :  LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).  -->
+
+<odoo>
+    <record id="bank_customer_invoice_wizard_wizard_form" model="ir.ui.view">
+        <field name="name">bank.customer.invoice.wizard.form</field>
+        <field name="model">bank.customer.invoice.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="line_amount" string="Total amount"/>
+                    </group>
+                    <field name="bank_receipt_line" invisible="1"/>
+                    <field name="total_amount" invisible="1"/>
+                    <field name="payment_done" invisible="1"/>
+                    <field name="line_ids">
+                        <tree editable='top' create="0" >
+                            <field name="sno"/>
+                            <field name="invoice"/>
+                            <field name="amount_due" sum="amount_due"/>
+                            <field name="payment_amount" sum="payment_amount" attrs="{'readonly': [('parent.payment_done', '=', True)]}"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button name="confirm_request" string="CONFIRM" type="object" class="oe_highlight" attrs="{'invisible': [('payment_done', '=', True)]}"/>
+                    <button special="cancel" string="CANCEL"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

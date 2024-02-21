@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="shop_warehouse" model="stock.warehouse">
+            <field name="name">Shop</field>
+            <field name="code">Shop</field>
+            <field name="store_warehouse">True</field>
+        </record>
+    </data>
+</odoo>

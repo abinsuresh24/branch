@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--  Author       :  SAYOOJ T K  -->
+<!--  Copyright(c) :  2023-Present Zinfog Codelabs Pvt Ltd (<https://www.zinfog.com>).  -->
+<!--  License      :  LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).  -->
+
+<odoo>
+
+    <menuitem action="purchase_requisition_action_shop"
+              id="purchase_requisition_menu_shop"
+              name="Purchase Requisition"
+              parent="zcl_shop.menu_shop_root"/>
+
+    <menuitem action="purchase_requisition_action_store"
+              id="purchase_requisition_menu_store"
+              name="Purchase Requisition"
+              parent="zcl_store.menu_action_store_parent"/>
+
+        <menuitem action="purchase_requisition_action_purchase"
+              id="purchase_requisition_menu_purchase"
+              name="Purchase Requisition"
+              parent="zcl_purchase.menu_purchase_root"/>
+
+</odoo>

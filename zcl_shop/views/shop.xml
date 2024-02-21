@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_shop_form" model="ir.ui.view">
+        <field name="name">stock.shop.form</field>
+        <field name="model">stock.location</field>
+        <field name="arch" type="xml">
+            <form string="Shops">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button"
+                                name="oh_hand_stock"
+                                icon="fa-list-ul"
+                                string="On Hand Stock"
+                                type="object">
+                        </button>
+                    </div>
+                    <h1>
+                        <field name="reference"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="branch_id"/>
+                            <field name="shop_location" force_save="1" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="company_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_shop_kanban" model="ir.ui.view">
+        <field name="name">Shop Kanban</field>
+        <field name="model">stock.location</field>
+        <field name="arch" type="xml">
+            <kanban sample="1">
+                <field name="id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title">
+                                    <field name="reference"/>
+                                </strong>
+                                <ul>
+                                    <li>
+                                        <strong>Name:
+                                            <field name="name"/>
+                                        </strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_shop_list" model="ir.ui.view">
+        <field name="name">stock.store.list</field>
+        <field name="model">stock.location</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="name"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="stock_shop_view_search" model="ir.ui.view">
+        <field name="name">stock.shop.search</field>
+        <field name="model">stock.location</field>
+        <field name="arch" type="xml">
+            <search string="shops">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_shop_form" model="ir.actions.act_window">
+        <field name="name">Shops</field>
+        <field name="res_model">stock.location</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="search_view_id" ref="stock_shop_view_search"/>
+        <field name="view_mode">kanban,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('view_shop_kanban')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('view_shop_form')})]"/>
+        <field name="domain">[('usage','=','internal'),('shop_location','=',True)]</field>
+    </record>
+
+    <record id="action_shop_list" model="ir.actions.act_window">
+        <field name="name">Store query</field>
+        <field name="res_model">stock.location</field>
+        <field name="type">ir.actions.act_window</field>
+<!--        <field name="domain">[('store_location','=',False)]</field>-->
+        <field name="search_view_id" ref="stock_shop_view_search"/>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('view_shop_list')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('view_shop_form')})]"/>
+        <field name="domain">[('usage','=','internal'),('shop_location','=',True)]</field>
+    </record>
+
+    <record id="shop_target_action" model="ir.actions.act_window">
+        <field name="name">Shop Target</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.location</field>
+         <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+        (0, 0, {'view_mode': 'tree', 'view_id': ref('view_shop_list')}),
+        (0, 0, {'view_mode': 'form', 'view_id': ref('view_shop_form')})]"/>
+    </record>
+
+</odoo>

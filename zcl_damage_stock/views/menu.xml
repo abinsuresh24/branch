@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+              id="damage_stock_menu_shop_id"
+              name="Damage Stock"
+              parent="zcl_store.menu_action_store_parent" />
+
+    <menuitem action="damage_stock_in_action_store"
+              id="damage_stock_in_menu_shop"
+              name="Damage Stock In"
+              parent="damage_stock_menu_shop_id" />
+
+    <menuitem action="damage_stock_out_action_store"
+              id="damage_stock_out_menu_shop"
+              name="Damage Stock Out"
+              parent="damage_stock_menu_shop_id" />
+
+    <menuitem action="damage_stock_out_action_shop"
+              id="damage_stock_menu_shop"
+              name="Damage Stock Out"
+              parent="zcl_shop.menu_shop_root" />
+
+    <menuitem action="damage_stock_action_purchase"
+              id="damage_stock_menu_purchase"
+              name="Damage Stocks"
+              parent="zcl_purchase.menu_purchase_root" />
+
+</odoo>

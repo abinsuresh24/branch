@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_purchase,access.purchase.purchase,model_purchase_purchase,base.group_user,1,1,1,1
+access_shop_summary,access.shop.summary,model_shop_summary,base.group_user,1,1,1,1

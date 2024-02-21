@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--     <record id="shop_request_tree" model="ir.ui.view">-->
+<!--        <field name="name">shop.request.tree</field>-->
+<!--        <field name="model">stock.location</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree string="Shop Request">-->
+<!--&lt;!&ndash;                <field name="reference"/>&ndash;&gt;-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+
+
+<!--    <record id="shop_requesting_action" model="ir.actions.act_window">-->
+<!--        <field name="name">Shop Request</field>-->
+<!--        <field name="res_model">shop.transfer</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--&lt;!&ndash;        <field name="domain">[('sale_types','=', 'do')]</field>&ndash;&gt;-->
+<!--        <field name="view_mode">tree</field>-->
+<!--&lt;!&ndash;        <field name="view_ids" eval="[(5, 0, 0),&ndash;&gt;-->
+<!--&lt;!&ndash;                (0, 0, {'view_mode': 'tree', 'view_id': ref('shop_request_tree')})]"/>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                (0, 0, {'view_mode': 'form', 'view_id': ref('view_direct_order_sale_order_form')})]"/>&ndash;&gt;&ndash;&gt;-->
+<!--    </record>-->
+
+
+
+<!--    <record id="shop_transfer_tree" model="ir.ui.view">-->
+<!--        <field name="name">shop.transfer.tree</field>-->
+<!--        <field name="model">shop.transfer</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree string="Shop Transfer" class="o_sale_order">-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+<!--    <record id="shop_transfer_action" model="ir.actions.act_window">-->
+<!--        <field name="name">Shop Transfer</field>-->
+<!--        <field name="res_model">shop.transfer</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--&lt;!&ndash;        <field name="domain">[('sale_types','=', 'do')]</field>&ndash;&gt;-->
+<!--        <field name="view_mode">tree</field>-->
+<!--        <field name="view_ids" eval="[(5, 0, 0),-->
+<!--                (0, 0, {'view_mode': 'tree', 'view_id': ref('shop_transfer_tree')})]"/>-->
+<!--&lt;!&ndash;                (0, 0, {'view_mode': 'form', 'view_id': ref('view_direct_order_sale_order_form')})]"/>&ndash;&gt;-->
+<!--    </record>-->
+</odoo>

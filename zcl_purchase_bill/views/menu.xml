@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_purchase_bill" name="Purchase Bill" parent="zcl_finance.menu_finance_root"/>
+    <menuitem id="menu_purchase_local_bill_approve" name="Purchase Local Bill" parent="menu_purchase_bill" action="action_move_in_invoice_type_purchase_local_approve"/>
+    <menuitem id="menu_purchase_import_bill_approve" name="Purchase Import Bill" parent="menu_purchase_bill" action="action_move_in_invoice_type_purchase_import_approve"/>
+
+    <menuitem id="menu_purchase_bill_purchase" name="Purchase Bill" parent="zcl_purchase.menu_purchase_root"/>
+    <menuitem id="menu_purchase_local_bill" name="Purchase Local Bill" parent="menu_purchase_bill_purchase" action="action_move_in_invoice_type_purchase_local_bill"/>
+    <menuitem id="menu_purchase_import_bill" name="Purchase Import Bill" parent="menu_purchase_bill_purchase" action="action_move_in_invoice_type_purchase_import_bill"/>
+
+    <menuitem id="menu_project_do_invoice" name="Project DO Invoice" parent="zcl_purchase.menu_purchase_root" action="action_move_in_invoice_type_project_do_invoice"/>
+</odoo>

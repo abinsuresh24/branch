@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <!--    <menuitem id="menu_action_zcl_contacts" name="Contacts" web_icon="zcl_contacts,static/description/icon.svg" />-->
+    <!--&lt;!&ndash;    here we are giving permission for  who can view the menus these groups are selecting from gulftech security selection&ndash;&gt;-->
+    <!--    <menuitem action="zcl_contact_action" id="menu_action_customer_form" parent="menu_action_zcl_contacts" name="Customers" sequence="5" />-->
+    <!--    <menuitem action="zcl_contact_vendor_action" id="menu_action_vendor_form" parent="menu_action_zcl_contacts" name="Vendors"/>-->
+<!--        <menuitem action="zcl_contact_sales_man_action" id="menu_action_sales_man_form" parent="zcl_shop.menu_shop_root" name="Sales Persons"/>-->
+    <!--    <menuitem id="menu_contact_config" parent="menu_action_zcl_contacts" name="Configuration"/>-->
+    <!--    <menuitem action="base.action_country" id="menu_zcl_country" parent="shop.menu_shop_conf" name="Country"/>-->
+    <!--    <menuitem action="base.action_country_group" id="menu_zcl_country_group" parent="shop.menu_shop_conf" name="Country Group"/>-->
+    <!--    <menuitem id="menu_partner_state" parent="shop.menu_shop_conf" name="State" action="base.action_country_state"/>-->
+    <!--    <menuitem id="menu_branch_view" parent="base.menu_users" name="Branch" action="branch_view_action" sequence="11"/>-->
+    <!--    <menuitem id="menu_payment_terms" parent="shop.menu_shop_conf" name="Payment Terms" action="action_payment_terms_form"/>-->
+
+</odoo>

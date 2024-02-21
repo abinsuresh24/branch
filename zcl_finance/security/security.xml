@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="group_for_finance" model="res.groups">
+        <field name="name">Finance</field>
+        <field name="category_id" ref="zcl_contacts.module_category_for_finance_and_purchase"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Form View of branch-->
+        <record id="branch_res_branch_view_form" model="ir.ui.view">
+            <field name="name">branch.res.branch.view.form</field>
+            <field name="model">res.branch</field>
+            <field name="arch" type="xml">
+                <form string="Branch">
+                    <header>
+                        <button name="prefix_generate" type="object" class="btn-primary" string="PREFIX"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="company_id"/>
+                                <field name="telephone"/>
+                                <field name="branch_code"/>
+                                <field name="stock_location"/>
+                            </group>
+                            <group>
+                                <field name="address"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Sales Sequences">
+                                <group>
+                                    <group name="do" string="Delivery Orders">
+                                        <field name="prefix_name"/>
+                                        <field name="do_prefix"/>
+                                        <field name="do_prefix_letter"/>
+                                        <field name="do_padding"/>
+
+                                    </group>
+                                    <group name="internal_do" string="Internal DO">
+                                        <field name="internal_do_prefix"/>
+                                        <field name="internal_do_prefix_letter"/>
+                                        <field name="internal_do_padding"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group name="project_do" string="Project DO">
+                                        <field name="project_do_prefix"/>
+                                        <field name="project_do_prefix_letter"/>
+                                        <field name="project_do_padding"/>
+                                    </group>
+                                    <group name="cash_sale" string="Cash Sale">
+                                        <field name="cash_sale_prefix"/>
+                                        <field name="cash_sale_prefix_letter"/>
+                                        <field name="cash_sale_padding"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group name="cash_memo" string="Cash Memo">
+                                        <field name="cash_memo_prefix"/>
+                                        <field name="cash_memo_prefix_letter"/>
+                                        <field name="cash_memo_padding"/>
+                                    </group>
+                                    <group name="sale_quotation" string="Sale Quotation">
+                                        <field name="sale_quotation_prefix"/>
+                                        <field name="sale_quotation_prefix_letter"/>
+                                        <field name="sale_quotation_padding"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group name="sale_return" string="Sale Return">
+                                        <field name="sale_return_prefix"/>
+                                        <field name="sale_return_prefix_letter"/>
+                                        <field name="sale_return_padding"/>
+                                    </group>
+                                    <group name="cash_sale" string="Cash Sale">
+                                        <field name="cash_sale_return_prefix"/>
+                                        <field name="cash_sale_return_prefix_letter"/>
+                                        <field name="cash_sale_return_padding"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Purchase Sequences">
+                                <group>
+                                    <group name="purchase_quotation" string="Purchase Quotation">
+                                        <field name="purchase_prefix_name"/>
+                                        <field name="purchase_quotation_prefix"/>
+                                        <field name="purchase_quotation_prefix_letter"/>
+                                        <field name="purchase_quotation_padding"/>
+                                    </group>
+                                    <group name="purchase_requisition" string="Purchase Requisition">
+                                        <field name="purchase_requisition_prefix"/>
+                                        <field name="purchase_requisition_prefix_letter"/>
+                                        <field name="purchase_requisition_padding"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group name="po_local" string="Purchase Order-Local">
+                                        <field name="po_local_prefix"/>
+                                        <field name="po_local_letter"/>
+                                        <field name="po_local_padding"/>
+                                    </group>
+                                    <group name="po_import" string="Purchase Order-Import">
+                                        <field name="po_import_prefix"/>
+                                        <field name="po_import_prefix_letter"/>
+                                        <field name="po_import_padding"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group name="cash_purchase" string="Cash Purchase">
+                                        <field name="cash_purchase_prefix"/>
+                                        <field name="cash_purchase_prefix_letter"/>
+                                        <field name="cash_purchase_padding"/>
+                                    </group>
+                                    <group name="cash_purchase_return" string="Cash Purchase Return">
+                                        <field name="cash_purchase_return_prefix"/>
+                                        <field name="cash_purchase_return_prefix_letter"/>
+                                        <field name="purchase_prefix_name"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group name="mrn_local" string="MRN-Local">
+                                        <field name="mrn_local_prefix"/>
+                                        <field name="mrn_local_prefix_letter"/>
+                                        <field name="mrn_local_padding"/>
+                                    </group>
+                                    <group name="mrn_import" string="MRN-Import">
+                                        <field name="mrn_import_prefix"/>
+                                        <field name="mrn_import_prefix_letter"/>
+                                        <field name="mrn_import_padding"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group name="pv_local" string="Purchase Voucher-Local">
+                                        <field name="pv_local_prefix"/>
+                                        <field name="pv_local_prefix_letter"/>
+                                        <field name="pv_local_padding"/>
+                                    </group>
+                                    <group name="pv_import" string="Purchase Voucher-Import">
+                                        <field name="pv_import_prefix"/>
+                                        <field name="pv_import_prefix_letter"/>
+                                        <field name="pv_import_padding"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group name="pr_import" string="Purchase Return-Import">
+                                        <field name="pr_import_prefix"/>
+                                        <field name="pr_import_prefix_letter"/>
+                                        <field name="pr_import_padding"/>
+                                    </group>
+                                    <group name="pr_local" string="Purchase Return-Local">
+                                        <field name="pr_local_prefix"/>
+                                        <field name="pr_local_prefix_letter"/>
+                                        <field name="pr_local_padding"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Inventory Sequences">
+                                <group>
+                                    <group name="material_requisition" string="Material Requisition">
+                                        <field name="inventory_prefix_name"/>
+                                        <field name="material_requisition_prefix"/>
+                                        <field name="material_requisition_prefix_letter"/>
+                                        <field name="material_requisition_padding"/>
+
+                                    </group>
+                                    <group name="shop_requisition" string="Shop Requisition">
+                                        <field name="shop_requisition_prefix"/>
+                                        <field name="shop_requisition_prefix_letter"/>
+                                        <field name="shop_requisition_padding"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group name="stock_transfer_out" string="Stock Transfer Out">
+                                        <field name="stock_transfer_out_prefix"/>
+                                        <field name="stock_transfer_out_prefix_letter"/>
+                                        <field name="stock_transfer_out_padding"/>
+                                    </group>
+                                    <group name="stock_transfer_in" string="Stock Transfer In">
+                                        <field name="stock_transfer_in_prefix"/>
+                                        <field name="stock_transfer_in_prefix_letter"/>
+                                        <field name="stock_transfer_in_padding"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group name="shop_transfer_out" string="Shop Transfer Out">
+                                        <field name="shop_transfer_out_prefix"/>
+                                        <field name="shop_transfer_out_prefix_letter"/>
+                                        <field name="shop_transfer_out_padding"/>
+                                    </group>
+                                    <group name="shop_transfer_in" string="Shop Transfer In">
+                                        <field name="shop_transfer_in_prefix"/>
+                                        <field name="shop_transfer_in_prefix_letter"/>
+                                        <field name="shop_transfer_in_padding"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group name="direct_transfer_out" string="Direct Transfer Out">
+                                        <field name="direct_transfer_out_prefix"/>
+                                        <field name="direct_transfer_out_prefix_letter"/>
+                                        <field name="direct_transfer_out_padding"/>
+                                    </group>
+                                    <group name="direct_transfer_in" string="Direct Transfer In">
+                                        <field name="direct_transfer_in_prefix"/>
+                                        <field name="direct_transfer_in_prefix_letter"/>
+                                        <field name="direct_transfer_in_padding"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group name="damage_stock_out" string="Damage Stock Out">
+                                        <field name="damage_stock_out_prefix"/>
+                                        <field name="damage_stock_out_prefix_letter"/>
+                                        <field name="damage_stock_out_padding"/>
+                                    </group>
+                                    <group name="damage_stock_in" string="Damage Stock In">
+                                        <field name="damage_stock_in_prefix"/>
+                                        <field name="damage_stock_in_prefix_letter"/>
+                                        <field name="damage_stock_in_padding"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View of branch-->
+        <record id="branch_res_branch_view_tree" model="ir.ui.view">
+            <field name="name">branch.res.branch.view.tree</field>
+            <field name="model">res.branch</field>
+            <field name="arch" type="xml">
+                <tree string="Branch">
+                    <field name="name"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--View action for branch form view and tree view-->
+        <record id="branch_action_res_branch" model="ir.actions.act_window">
+            <field name="name">Branch</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.branch</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click here to create a new branch.
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="branch_menu_res_branch" name="Branch" parent="base.menu_users" action="branch_action_res_branch"/>
+    </data>
+</odoo>

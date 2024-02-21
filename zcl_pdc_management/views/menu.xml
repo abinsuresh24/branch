@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+              action="pdc_management_action_store"
+              id="pdc_management_menu"
+              name="Post-Dated Receipt"
+              parent="zcl_shop.menu_shop_root"/>
+
+    <menuitem
+              action="pdc_management_action_finance"
+              id="pdc_management_menu_finance"
+              name="PDC Receipt"
+              parent="zcl_finance.menu_finance_receipt"/>
+
+</odoo>

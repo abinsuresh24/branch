@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    #####################   STORE SECTION   ##############################
+    <!--   pdc management form view in store  -->
+    <record id="pdc_management_view_form" model="ir.ui.view">
+        <field name="name">pdc.management.view.form</field>
+        <field name="model">pdc.management</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,done"/>
+                    <button name="action_confirm" string="Confirm"
+                            type="object" class="oe_highlight" states="draft"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="cash_bank"/>
+                            <field name="branch" invisible="1"/>
+                            <field name="branch_id"/>
+                            <field name="cheque_name"/>
+                            <field name="manual_no"/>
+                            <field name="cheque_no"/>
+                            <field name="manual_no"/>
+                        </group>
+                        <group>
+                            <field name="finance_status"
+                                   attrs="{'invisible': [('state', '=', 'draft')],'readonly': True}"
+                                   decoration-danger="finance_status == 'reject'"
+                                   decoration-success="finance_status == 'approved'"
+                                   decoration-warning="finance_status == 'pending'"/>
+                            <field name="date"/>
+                            <field name="maturity_date"/>
+                            <field name="narration"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Main Page">
+                            <field name="line_ids" attrs="{'readonly': [('state', '=', 'done')]}">
+                                <tree editable="bottom">
+                                    <field name="sno" readonly="1" force_save="1"/>
+                                    <field name="customer"/>
+                                    <field name="amount"/>
+                                    <field name="reference" options="{'create': false,'no_create':True}"/>
+                                    <field name="remark"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+            </form>
+        </field>
+    </record>
+    <!--   pdc management tree view in store  -->
+    <record id="pdc_management_view_tree" model="ir.ui.view">
+        <field name="name">pdc.management.view.tree</field>
+        <field name="model">pdc.management</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+
+    ##########################    FINANCE SECTION    #############################
+
+     <!--    pdc management form view in finance  -->
+        <record id="pdc_management_view_form_finance" model="ir.ui.view">
+        <field name="name">pdc.management.view.form.finance</field>
+        <field name="model">pdc.management</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="finance_status" widget="statusbar"
+                           statusbar_visible="pending,approved,reject"/>
+                    <button name="action_finance_approve" string="Approve"
+                            type="object" class="oe_highlight" attrs="{'invisible': [('finance_status', '=', 'approved')]}"/>
+                    <button name="action_finance_reject" string="Reject"
+                            type="object" class="oe_highlight" attrs="{'invisible': [('finance_status', '=', 'reject')]}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="cash_bank"/>
+                            <field name="branch" invisible="1"/>
+                            <field name="branch_id"/>
+                            <field name="cheque_name"/>
+                            <field name="manual_no"/>
+                            <field name="cheque_no"/>
+                            <field name="manual_no"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="maturity_date"/>
+                            <field name="narration"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Main Page">
+                            <field name="line_ids" >
+                                <tree editable="bottom">
+                                    <field name="sno" readonly="1" force_save="1"/>
+                                    <field name="customer"/>
+                                    <field name="amount"/>
+                                    <field name="reference" options="{'create': false,'no_create':True}"/>
+                                    <field name="remark"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+            </form>
+        </field>
+    </record>
+
+        <!--    pdc management tree view in finance  -->
+    <record id="pdc_management_view_tree_finance" model="ir.ui.view">
+        <field name="name">pdc.management.view.tree.finance</field>
+        <field name="model">pdc.management</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="finance_status"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+    #ACTIONS STORE AND FINANCE
+    <!--   PDC ACTION STORE  -->
+    <record id="pdc_management_action_store" model="ir.actions.act_window">
+        <field name="name">Post-Date Receipt</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pdc.management</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('pdc_management_view_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('pdc_management_view_form')})]"/>
+    </record>
+
+        <!--    PDC ACTION FINANCE  -->
+    <record id="pdc_management_action_finance" model="ir.actions.act_window">
+        <field name="name">Post-Date Receipt</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pdc.management</field>
+        <field name="domain">[('state','=','done')]</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('pdc_management_view_tree_finance')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('pdc_management_view_form_finance')})]"/>
+    </record>
+</odoo>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+            id="menu_customer_invoice"
+            name="Project Do invoices"
+            action="action_customer_invoice"
+            parent="zcl_shop.menu_shop_invoices"/>
+
+    <menuitem
+            id="cash_memo_invoices"
+            name="Cash memo invoices"
+            action="action_cash_memo_invoice_view"
+            parent="zcl_shop.menu_shop_invoices"/>
+
+    <menuitem
+            id="cash_sale_invoices"
+            name="Cash sale invoices"
+            action="action_cash_sale_invoice_view"
+            parent="zcl_shop.menu_shop_invoices"/>
+
+    <menuitem
+            id="sale_return_invoices"
+            name="Sale return invoices"
+            action="action_sale_return_invoice_view"
+            parent="zcl_shop.menu_shop_invoices"/>
+
+    <menuitem
+            id="cash_memo_sale_return_invoices"
+            name="Cash memo return invoices"
+            action="action_cash_memo_sale_return_invoice_view"
+            parent="zcl_shop.menu_shop_invoices"/>
+
+</odoo>

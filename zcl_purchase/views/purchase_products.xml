@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="zcl_purchase_product_view" model="ir.ui.view">
+        <field name="name">purchase.product.form</field>
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <form string="Product">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet name="product_form">
+                    <field name='product_variant_count' invisible='1'/>
+                    <field name='is_product_variant' invisible='1'/>
+                    <field name='attribute_line_ids' invisible='1'/>
+                    <field name="type" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                    <field name="id" invisible="True"/>
+                    <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+                    <div class="oe_title">
+                        <label for="name" string="Product Name"/>
+                        <h1>
+                            <div class="d-flex">
+                                <field class="text-break" name="name" placeholder="e.g. Cheese Burger"/>
+                            </div>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="default_code" string="Product Code"/>
+<!--                            <field name="branch_id" string="Branch" readonly="1"/>-->
+                        </group>
+                        <group>
+                            <field name="product_alias"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="General Information" name="general_information">
+                            <group>
+                                <group name="group_general">
+                                    <field name="active" invisible="1"/>
+                                    <field name="detailed_type" invisible="1"/>
+                                    <label for="cntr_max_price"/>
+                                    <div name="pricing">
+                                        <field name="cntr_max_price" class="oe_inline" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                    </div>
+
+                                    <field name="cntr_min_price" class="oe_inline" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                    <field name="product_type"/>
+                                    <field name="type"/>
+                                    <label for="standard_price" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
+                                    <div name="standard_price_uom" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}">
+                                        <field name="standard_price" class="oe_inline" widget='monetary' invisible="1" options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/>
+                                    </div>
+                                </group>
+                                <group name="group_standard_price">
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="cost_currency_id" invisible="1"/>
+                                    <field name="product_variant_id" invisible="1"/>
+                                    <field name="reorder_level"/>
+                                    <field name="bin_capacity"/>
+                                    <div class="mt-2">
+                                        <label for="valuation_method"/>
+                                        <br/>
+                                        <field name="valuation_method" widget="radio" options="{'horizontal': true}" default="wt_average" class="oe_inline"/>
+                                    </div>
+                                </group>
+                            </group>
+                            <group>
+                                <group name="group_general">
+                                    <field name="active" invisible="1"/>
+                                    <field name="uom_id" groups="uom.group_uom" options="{'no_create': True}"/>
+                                    <field name="uom_po_id" groups="uom.group_uom" options="{'no_create': True}"/>
+                                </group>
+                                <group>
+
+                                </group>
+                            </group>
+                        </page>
+                        <page name="other_details" string="Other">
+                            <group name="other_details">
+                                <group>
+                                    <field name="brand"/>
+                                    <field name="warranty"/>
+                                    <field name="division_group"/>
+                                    <field name="item_sub_group"/>
+                                    <field name="markup"/>
+                                    <field name="foc"/>
+                                    <field name="vendor"/>
+                                </group>
+                                <group>
+                                    <field name="country_of_origin_id"/>
+                                    <field name="alternative"/>
+                                    <field name="item_group"/>
+                                    <field name="categ_id" string="Item Category"/>
+                                    <field name="brand_new"/>
+                                    <field name="movement"/>
+                                    <field name="grade"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="item_type" string="IT">
+                            <group name="item_type">
+                                <group>
+                                    <field name="item_type"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="selling_rate" string="Selling Rate">
+                            <group name="selling_rate">
+                                <group>
+                                    <field name="with_effect_from"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="rate_definition" widget="radio" options="{'horizontal': true}" default="over_all_selling_rate" class="oe_inline"/>
+                                    <field name="list_price" class="oe_inline" widget='monetary' string="Selling Rate" options="{'currency_field': 'currency_id', 'field_digits': True}" />
+                                    <field name="minimal_selling_price" class="oe_inline" widget='monetary' string="Minimum Price" options="{'currency_field': 'currency_id', 'field_digits': True}" />
+                                    <field name="cntr_min_price" class="oe_inline" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}" />
+                                    <field name="traders_price" class="oe_inline" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}" string="Internal DO Price" />
+                                    <field name="dealer_price" class="oe_inline" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}" />
+                                </group>
+                                <group>
+                                    <field name="discount" class="oe_inline" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                    <field name="cntr_max_price" class="oe_inline" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}" />
+                                    <field name="project_price" class="oe_inline" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}" string="Project DO Price"/>
+                                    <field name="wholesale" class="oe_inline" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                    <field name="cash_sale_count"/>
+                                    <field name="cash_sale_price" class="oe_inline" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="units" string="Units">
+                            <group>
+                                <group>
+                                    <field name="basic_unit"/>
+                                </group>
+                            </group>
+                            <field name="related_units_ids" string="Units" widget="one2many_list">
+                                <tree editable="bottom" sample="1">
+                                    <field name="unit"/>
+                                    <field name="conversion"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Reorder" name="reorder">
+                            <field name="related_reorders_ids" string="Reorder" widget="one2many_list">
+                                <tree editable="top" sample="1">
+                                    <field name="branch"/>
+                                    <field name="reorder"/>
+                                    <field name="reorder_2"/>
+                                    <field name="lead_time"/>
+                                </tree>
+                            </field>
+
+                        </page>
+                        <page name="narration" string="Narration">
+                            <field name="description" placeholder="This note is only for narration purposes."/>
+                        </page>
+                        <attribute name="invisible">1</attribute>
+                    </notebook>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+
+
+
+
+
+    <record id="zcl_purchase_products" model="ir.actions.act_window">
+        <field name="name">Purchase Products</field>
+        <field name="res_model">product.product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="domain">[('detailed_type','=','product'),('invoice_policy','=','order')]</field>
+        <field name="context">{'default_detailed_type': 'product', 'default_invoice_policy': 'order'}</field>
+        <field name="search_view_id" ref="zcl_products.zcl_product_view_search"/>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('zcl_products.zcl_product_kanban_view')}),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('zcl_products.zcl_product_view_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('zcl_purchase_product_view')})]"/>
+    </record>
+
+</odoo>

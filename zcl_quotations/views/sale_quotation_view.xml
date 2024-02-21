@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--    sale quotation form view-->
+    <record id="sale_quotation_view_form" model="ir.ui.view">
+        <field name="name">sale.quotation.view.form</field>
+        <field name="model">sale.quotation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,sale"/>
+                    <button name="sale_confirm" string="Confirm"
+                            type="object" class="oe_highlight" states="draft"/>
+                    <button name="sale_cancel" string="Cancel"
+                            type="object"
+                            states="sale"/>
+                    <button name="sale_draft" string="Draft"
+                            type="object"
+                            states="sale,cancel"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                            <field name="walkin_customer_bool" invisible="1" force_save="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'create': false, 'create_edit': false,'no_create':True,'no_open': True}"/>
+                            <field name="payment_term" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'create': false, 'create_edit': false}"/>
+                            <field name="delivery_terms" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'create': false, 'create_edit': false}"/>
+                            <field name="sales_man_id" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'create': false, 'create_edit': false,'no_create':True,'no_open': True}"/>
+                        </group>
+                        <group>
+                            <field name="branch_id" readonly="1"/>
+<!--                            <field name="gsm_number_customer"/>-->
+                            <field name="gsm_number_customer" attrs="{'readonly': [('state', '!=', 'draft')], 'invisible': [('walkin_customer_bool','!=', False)]}" string="GSM No"/>
+                            <field name="gsm_number" attrs="{'readonly': [('state', '!=', 'draft')], 'invisible': [('walkin_customer_bool','!=', True)]}" string="GSM No"/>
+                            <field name="customer_name" attrs="{'readonly': [('state', '!=', 'draft')], 'invisible': [('walkin_customer_bool','!=', True)]}"/>
+                            <field name="customer_address" attrs="{'readonly': [('state', '!=', 'draft')], 'invisible': [('walkin_customer_bool','!=', True)]}"/>
+                            <field name="sequence_number"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Order Lines">
+                            <field name="line_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <tree editable="bottom">
+                                    <field name="sno" readonly="1" force_save="1"/>
+                                    <field name="item_id" domain="[('sale_ok', '=', True), ('state','=','done'),('detailed_type','=','product'),('invoice_policy','=','order')]" options="{'no_create':True,'no_open': True}"/>
+                                    <field name="units"/>
+                                    <field name="qty"/>
+                                    <field name="rate"/>
+                                    <field name="gross"/>
+                                    <field name="sale_type"/>
+                                    <field name="discount_on_foc"/>
+                                    <field name="bottom_price"/>
+                                    <field name="net_value"/>
+                                    <field name="stock_in_hand"/>
+                                </tree>
+                            </field>
+                            <div>
+                                <group>
+                                    <group>
+                                        <group>
+                                            <field name="total_qty" readonly="1" force_save="1"/>
+                                            <field name="total_stock_in_hand" readonly="1" force_save="1"/>
+                                        </group>
+                                        <group>
+                                            <field name="total_gross" readonly="1" force_save="1"/>
+                                            <field name="total_bottom_price" readonly="1" force_save="1"/>
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <group>
+                                            <field name="total_net_value" readonly="1" force_save="1"/>
+                                            <field name="total_vat" readonly="1" force_save="1"/>
+                                        </group>
+                                        <group>
+                                            <field name="total_disc_on_foc" readonly="1" force_save="1"/>
+                                            <field name="total_net" readonly="1" force_save="1"/>
+                                        </group>
+
+                                    </group>
+                                </group>
+                            </div>
+                        </page>
+                        <page string="Narration">
+                            <field name="narration"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--    sale quotation tree view-->
+    <record id="sale_quotation_view_tree" model="ir.ui.view">
+        <field name="name">sale.quotation.view.tree</field>
+        <field name="model">sale.quotation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="partner_id"/>
+                <field name="sales_man_id"/>
+                <field name="total_net"/>
+            </tree>
+        </field>
+    </record>
+    <record id="sale_quotation_action" model="ir.actions.act_window">
+        <field name="name">Quotation</field>
+        <field name="res_model">sale.quotation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_purchase_root"
+              name="Purchase"
+              groups="zcl_purchase.group_for_purchase"
+              action="action_purchase_form"
+              web_icon="zcl_purchase,static/description/icon.svg"
+    />
+
+    <menuitem id="menu_product_approval"
+              name="Product Approval"
+              parent="menu_purchase_root"
+              groups="zcl_purchase.group_for_purchase"
+              action="zcl_purchase.action_approval_products"
+    />
+    <menuitem action="zcl_contacts.zcl_contact_vendor_action"
+              id="menu_contact_vendor_purchase"
+              parent="zcl_purchase.menu_purchase_root"
+              name="Vendors"/>
+
+    <menuitem id="menu_daily_summary"
+              name="Daily Summary"
+              parent="menu_purchase_root"
+              groups="zcl_purchase.group_for_purchase"
+              action="action_daily_summary"
+    />
+
+    <menuitem action="zcl_direct_order.action_approval_sale_order"
+              id="delivery_order_requests" parent="menu_purchase_root"
+              name="Discount Approval" groups="zcl_purchase.group_for_purchase"/>
+
+    <menuitem action="zcl_purchase_products"
+              id="menu_action_purchase_product"
+              parent="menu_purchase_root"
+              name="Products" groups="zcl_purchase.group_for_purchase"/>
+
+
+</odoo>

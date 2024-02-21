@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--    bank receipt form view-->
+    <record id="bank_receipt_view_form" model="ir.ui.view">
+        <field name="name">bank.receipt.view.form</field>
+        <field name="model">bank.receipt</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,done"/>
+                    <button name="bank_receipt_confirm" string="Confirm"
+                            type="object" class="oe_highlight" states="draft"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="cash_bank" options="{'create': false, 'create_edit': false,'no_create':True,'no_open': True}"/>
+                            <field name="cheque_no"/>
+                            <field name="branch_id"/>
+                        </group>
+                        <group>
+                            <field name="manual_no"/>
+                            <field name="narration"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Lines">
+                            <field name="line_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <tree editable="bottom">
+                                    <field name="sno" readonly="1" force_save="1"/>
+                                    <field name="customer"/>
+                                    <field name="amount"/>
+<!--                                    <field name="reference" options="{'create': false,'no_create':True}"/>-->
+                                    <button name="open_invoice_wizard" type="object" title="Orders" icon="fa-pencil-square-o"  string="Reference"/>
+                                    <field name="remark"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook><br/>
+                    <div>
+                        <group class="oe_right">
+                            <field name="omani_riyal"/>
+                        </group>
+                        <group class="oe_right">
+                            <field name="net"/>
+                        </group>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--    bank receipt tree view-->
+    <record id="bank_receipt_view_tree" model="ir.ui.view">
+        <field name="name">bank.receipt.view.tree</field>
+        <field name="model">bank.receipt</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+    #######################   FINANCE SIDE   ####################################
+
+    <record id="bank_receipt_view_form_finance" model="ir.ui.view">
+        <field name="name">bank.receipt.view.form</field>
+        <field name="model">bank.receipt</field>
+        <field name="arch" type="xml">
+            <form create="0" >
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="done,approve,reject"/>
+                    <button name="bank_receipt_confirm" string="Confirm"
+                            type="object" class="oe_highlight" states="draft"/>
+                    <button name="action_finance_approve" string="Approve"
+                            type="object" class="oe_highlight" attrs="{'invisible': [('state', '=', 'approve')]}"/>
+                    <button name="action_finance_reject" string="Reject"
+                            type="object" class="oe_highlight" attrs="{'invisible': [('state', '=', 'reject')]}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="cash_bank" options="{'create': false, 'create_edit': false,'no_create':True,'no_open': True}"/>
+                            <field name="cheque_no"/>
+                            <field name="branch_id"/>
+                        </group>
+                        <group>
+                            <field name="manual_no"/>
+                            <field name="narration"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Lines">
+                            <field name="line_ids" attrs="{'readonly': [('state', '!=', 'draft'),]}">
+                                <tree editable="bottom">
+                                    <field name="sno" readonly="1" force_save="1"/>
+                                    <field name="customer"/>
+                                    <field name="amount"/>
+                                    <button name="open_invoice_wizard" type="object" title="Orders" icon="fa-pencil-square-o"  string="Reference"/>
+                                    <field name="remark"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook><br/>
+                    <div>
+                        <group class="oe_right">
+                            <field name="omani_riyal"/>
+                        </group>
+                        <group class="oe_right">
+                            <field name="net"/>
+                        </group>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="bank_receipt_view_tree_finance" model="ir.ui.view">
+        <field name="name">bank.receipt.view.tree</field>
+        <field name="model">bank.receipt</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+
+    #####################   ACTIONS   ##########################
+
+<!--    shop action    -->
+    <record id="bank_receipt_action" model="ir.actions.act_window">
+        <field name="name">Bank Receipt</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">bank.receipt</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('bank_receipt_view_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('bank_receipt_view_form')})]"/>
+    </record>
+
+<!--    finance action    -->
+    <record id="bank_receipt_action_finance" model="ir.actions.act_window">
+        <field name="name">Bank Receipt</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">bank.receipt</field>
+        <field name="domain">[('state','!=','draft')]</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('bank_receipt_view_tree_finance')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('bank_receipt_view_form_finance')})]"/>
+    </record>
+</odoo>

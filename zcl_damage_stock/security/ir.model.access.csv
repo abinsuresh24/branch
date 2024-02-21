@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_damage_stock,access.damage.stock,model_damage_stock,base.group_user,1,1,1,1
+access_damage_stock_line,access.damage.stock.line,model_damage_stock_line,base.group_user,1,1,1,1

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_store_stock_quant_tree_inventory_editable">
+        <field name="name">store.stock.quant.inventory.tree.editable</field>
+        <field name="model">stock.quant</field>
+        <field name="arch" type="xml">
+            <tree default_order="location_id, inventory_date, product_id, package_id, lot_id, owner_id" decoration-warning='is_outdated' editable="bottom" create="1" edit="1" import="1">
+                <field name="create_date" invisible="1"/>
+                <field name="write_date" invisible="1"/>
+                <field name="id" invisible="1"/>
+                <field name="is_outdated" invisible="1"/>
+                <field name="sn_duplicated" invisible="1"/>
+                <field name="tracking" invisible="1"/>
+                <field name="inventory_quantity_set" invisible="1"/>
+                <field name="company_id" invisible="1"/>
+                <field name="product_id" attrs="{'readonly': [('id', '!=', False)]}" readonly="context.get('single_product', False)" force_save="1" options="{'no_create': True}"
+                       domain="[('detailed_type', '=', 'product')]"/>
+                <field name="lot_id" groups="stock.group_production_lot"
+                       attrs="{'readonly': ['|', ('tracking', 'not in', ['serial', 'lot']), '&amp;', ('id', '!=', False), '|', ('lot_id', '!=', False), ('quantity', '!=', 0)]}"
+                       context="{'default_product_id': product_id, 'default_company_id': company_id}"
+                       decoration-warning="sn_duplicated"
+                       force_save="1" invisible="1"/>
+                <field name="available_quantity" string="Available Quantity" decoration-danger="available_quantity &lt; 0" optional="show"/>
+                <field name="quantity" optional="show" decoration-warning="quantity &lt; 0" string="On Hand Quantity"/>
+                <field name="inventory_quantity" widget="counted_quantity_widget"/>
+                <field name="inventory_diff_quantity" string="Difference" attrs="{'invisible': [('inventory_quantity_set', '=', False)]}" decoration-muted="inventory_diff_quantity == 0"
+                       decoration-danger="inventory_diff_quantity &lt; 0" decoration-success="inventory_diff_quantity &gt; 0" decoration-bf="inventory_diff_quantity != 0"/>
+                <button name="action_apply_inventory" groups="stock.group_stock_manager" type="object" string="Apply" class="btn btn-link" icon="fa-save"
+                        attrs="{'invisible': [('inventory_quantity_set', '=', False)]}"/>
+                <button name="action_set_inventory_quantity" type="object" string="Set" class="btn btn-link" icon="fa-bullseye" attrs="{'invisible': [('inventory_quantity_set', '=', True)]}"/>
+                <button name="action_set_inventory_quantity_to_zero" type="object" string="Clear" class="btn text-warning" icon="fa-times"
+                        attrs="{'invisible': [('inventory_quantity_set', '=', False)]}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_store_stock_form" model="ir.actions.act_window">
+        <field name="name">Store Stock</field>
+        <field name="res_model">stock.quant</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_ids" eval="[(5, 0, 0),(0, 0, {'view_mode': 'tree', 'view_id': ref('view_store_stock_quant_tree_inventory_editable')})]"/>
+    </record>
+
+</odoo>

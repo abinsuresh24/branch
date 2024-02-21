@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_shop_root" name="Shops" web_icon="zcl_shop,static/description/icon.svg" groups="zcl_contacts.group_for_shop,zcl_contacts.group_for_store_shop_admin"/>
+    <menuitem action="action_shop_form" id="menu_shop" parent="menu_shop_root" name="Shops" groups="zcl_contacts.group_for_store_shop_admin"/>
+    <menuitem action="category_shop_python_action" id="menu_contact" parent="zcl_shop.menu_shop_root" name="Customers"/>
+    <menuitem id="shop_request_menu" parent="menu_shop_root" name="Shop Request"/>
+    <menuitem id="shop_transfer_menu" parent="shop_request_menu" name="Shop Transfer" action="shop_transfer_action"/>
+    <menuitem id="shop_transfer_in_menu" parent="shop_request_menu" name="Shop Transfer In" action="shop_transfer_in_action"/>
+    <menuitem id="shop_transfer_out_menu" parent="zcl_store.menu_action_store_parent" name="Shop Transfer Out" action="shop_transfer_out_action"/>
+
+    <menuitem id="menu_shop_sales" parent="menu_shop_root" name="Sales"/>
+    <menuitem id="menu_shop_invoices" parent="menu_shop_root" name="Invoices"/>
+<!--    <menuitem id="menu_shop_request" parent="menu_shop_root" name="Shop Request"/>-->
+    <menuitem action="action_shop_list" id="menu_action_stock_query" parent="zcl_store.menu_action_store_parent" name="Stock Query" groups="zcl_contacts.group_for_store_shop_admin"/>
+    <menuitem action="action_shop_stock_in_hand" id="menu_action_stock_in_hand_shop" parent="menu_shop_root" name="Stock in hand"/>
+    <menuitem action="action_shop_stock_in_hand" id="menu_action_stock_in_hand_store" parent="zcl_store.menu_action_store_parent" name="Stock in hand"/>
+    <menuitem action="zcl_contact_sales_man_action" id="menu_sales_mans" parent="menu_shop_root" name="Salesman"/>
+
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_action_direct_transfer_parent" parent="zcl_store.menu_action_transfer_form" name="Direct Transfer"/>
+    <menuitem id="menu_action_direct_transfer_in_parent" parent="zcl_shop.menu_shop_root" name="Direct Transfer"/>
+    <menuitem action="direct_transfer_out_action" id="menu_action_direct_transfer_form" parent="menu_action_direct_transfer_parent" name="Transfer Out"/>
+    <menuitem action="direct_transfer_in_action" id="menu_action_direct_transfer_in_form" parent="menu_action_direct_transfer_in_parent" name="Transfer In"/>
+
+</odoo>

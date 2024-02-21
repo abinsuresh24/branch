@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="salesman_incentive_view_form" model="ir.ui.view">
+        <field name="name">salesman.incentive.view.form</field>
+        <field name="model">salesman.incentive</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                <button name="action_compute_incentive" string="Compute" type="object" class="oe_highlight"/>
+            </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="amount" string="Target Amount"/>
+                            <field name="showroom_incharge"/>
+                            <field name="assistant_amount"/>
+                            <field name="salesman_amount"/>
+                        </group>
+                        <group>
+                            <field name="branch_id"/>
+                            <label for="date_from" string="Planned Date"/>
+                            <div name="dates" class="o_row">
+                                <field name="date_from" widget="daterange" options='{"related_end_date": "date_to"}'/>
+                                <i class="fa fa-long-arrow-right mx-2 oe_edit_only" aria-label="Arrow icon" title="Arrow"/>
+                                <i class="fa fa-long-arrow-right mx-2 oe_read_only" aria-label="Arrow icon" title="Arrow" attrs="{'invisible': [('date_from', '=', False), ('date_to', '=', False)]}"/>
+                                <field name="date_to" widget="daterange" options='{"related_start_date": "date_start"}'/>
+                            </div>
+                            <field name="amount_achieved" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="salesman_incentive_view_tree" model="ir.ui.view">
+        <field name="name">salesman.incentive.view.tree</field>
+        <field name="model">salesman.incentive</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="branch_id"/>
+                <field name="amount" string="Target Amount"/>
+                <field name="amount_achieved"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="showroom_incharge" optional="hide"/>
+                <field name="assistant_amount" optional="hide"/>
+                <field name="salesman_amount" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_salesman_incentive" model="ir.actions.act_window">
+        <field name="name">Target Setting and Incentive</field>
+        <field name="res_model">salesman.incentive</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

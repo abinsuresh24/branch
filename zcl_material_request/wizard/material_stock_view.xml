@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--  Author       :  Abin suresh  -->
+<!--  Copyright(c) :  2023-Present Zinfog Codelabs Pvt Ltd (<https://www.zinfog.com>).  -->
+<!--  License      :  LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).  -->
+
+<odoo>
+    <record id="material_stock_wizard_view_form" model="ir.ui.view">
+        <field name="name">material.stock.wizard.view.form</field>
+        <field name="model">material.stock.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="line_id" invisible="1"/>
+                    <field name="items_id" invisible="1"/>
+                    <field name="material_stock_ids">
+                        <tree editable="bottom">
+                            <field name="loc_id"/>
+                            <field name="quantity"/>
+                            <field name="req_qty"/>
+<!--                            <button name="add_material" string="ADD" type="object" class="oe_highlight"/>-->
+                        </tree>
+                    </field>
+                </sheet>
+                <footer>
+                    <button name="confirm_request" string="CONFIRM" type="object" class="oe_highlight"/>
+                    <button special="cancel" string="CANCEL"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

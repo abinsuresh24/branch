@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--    damage stock form view-->
+    <record id="damage_stock_view_form_stock" model="ir.ui.view">
+        <field name="name">damage.stock.view.form</field>
+        <field name="model">damage.stock</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,done"/>
+                    <button name="action_confirm" string="Confirm"
+                            type="object" class="oe_highlight" states="draft"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="branch"/>
+                            <field name="transfer_from"/>
+                            <field name="transfer_to"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="narration"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Main Page">
+                            <field name="line_ids" attrs="{'readonly': [('state', '=', 'done')]}">
+                                <tree editable="bottom">
+                                    <field name="sno" readonly="1" force_save="1"/>
+                                    <field name="product_id"/>
+                                    <field name="description"/>
+                                    <field name="units"/>
+                                    <field name="qty"/>
+                                    <field name="remark"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--   damage stock tree view-->
+    <record id="damage_stock_view_tree_stock" model="ir.ui.view">
+        <field name="name">damage.stock.view.tree</field>
+        <field name="model">damage.stock</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    SHOP ACTION  -->
+    <record id="damage_stock_out_action_shop" model="ir.actions.act_window">
+        <field name="name">Damage stock out</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">damage.stock</field>
+        <field name="domain">[('shop_true','=',True)]</field>
+        <field name="context">{'default_shop_true': True}</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('damage_stock_view_tree_stock')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('damage_stock_view_form_stock')})]"/>
+    </record>
+
+
+</odoo>

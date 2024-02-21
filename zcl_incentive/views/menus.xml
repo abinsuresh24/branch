@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_salesman_incentive" action="action_salesman_incentive" parent="zcl_finance.menu_finance_root" name="Target setting and Incentive"/>
+</odoo>

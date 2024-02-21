@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_grn_root" name="GRN" parent="zcl_store.menu_action_store_parent" action="grn_store_action"/>
+    <menuitem id="menu_grn_shop_root" name="GRN" parent="zcl_shop.menu_shop_root" action="grn_shop_action"/>
+</odoo>

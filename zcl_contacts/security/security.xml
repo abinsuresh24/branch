@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="module_category_shop_store" model="ir.module.category">
+        <field name="name">Shop or Store</field>
+        <field name="description">Category for shop or store</field>
+    </record>
+
+    <record id="group_for_store_shop_admin" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="category_id" ref="module_category_shop_store"/>
+    </record>
+
+    <record id="group_for_store" model="res.groups">
+        <field name="name">Store</field>
+        <field name="category_id" ref="module_category_shop_store"/>
+    </record>
+
+    <record id="group_for_shop" model="res.groups">
+        <field name="name">Shop</field>
+        <field name="category_id" ref="module_category_shop_store"/>
+    </record>
+
+    <record id="module_category_for_finance_and_purchase" model="ir.module.category">
+        <field name="name">Finance or Purchase</field>
+        <field name="description">Category for finance and purchase</field>
+    </record>
+
+</odoo>

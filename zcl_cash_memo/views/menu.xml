@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+            id="submenu_cash_memo"
+            name="Cash Memo"
+            action="action_cash_memo"
+            parent="zcl_shop.menu_shop_sales"/>
+
+</odoo>

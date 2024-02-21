@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_walkin_customer_line,access.walkin.customer.line,model_walkin_customer_line,base.group_user,1,1,1,1
+access_payments_terms,access.payments.terms,model_payments_terms,base.group_user,1,1,1,1

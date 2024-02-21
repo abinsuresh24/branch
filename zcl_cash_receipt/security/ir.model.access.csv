@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cash_receipt,access.cash.receipt,model_cash_receipt,base.group_user,1,1,1,1
+access_cash_receipt_line,access.cash.receipt.line,model_cash_receipt_line,base.group_user,1,1,1,1
+access_customer_invoice_wizard,access.customer.invoice.wizard,model_customer_invoice_wizard,base.group_user,1,1,1,1
+access_customer_invoice_wizard_line,access.customer.invoice.wizard.line,model_customer_invoice_wizard_line,base.group_user,1,1,1,1
+

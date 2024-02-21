@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem action="cash_receipt_action"
+              id="cash_receipt_menu"
+              name="Cash Receipt"
+              parent="zcl_shop.menu_shop_root"/>
+
+    <menuitem action="cash_receipt_action_finance"
+              id="cash_receipt_menu_finance"
+              name="Cash Receipt"
+              parent="zcl_finance.menu_finance_receipt"/>
+
+</odoo>

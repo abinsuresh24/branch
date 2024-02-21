@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_store_form" model="ir.ui.view">
+        <field name="name">stock.store.form</field>
+        <field name="model">stock.warehouse</field>
+        <field name="arch" type="xml">
+            <form string="Stores">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button"
+                                name="store_stock"
+                                icon="fa-list-ul"
+                                string="Oh Hand Stock"
+                                type="object">
+                        </button>
+                        <button class="oe_stat_button"
+                                name="shop_stock"
+                                icon="fa-list-ul"
+                                string="Shop Stocks"
+                                type="object">
+                        </button>
+                    </div>
+                    <h1>
+                        <field name="reference"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="name" placeholder="e.g. store Name"/>
+                            <field name="branch_id"/>
+                        </group>
+                        <group>
+                            <field name="code" placeholder="e.g. CW"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_store_kanban" model="ir.ui.view">
+        <field name="name">Store Kanban</field>
+        <field name="model">stock.warehouse</field>
+        <field name="arch" type="xml">
+            <kanban sample="1">
+                <field name="id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title">
+                                    <field name="reference"/>
+                                </strong>
+                                <ul>
+                                    <li>
+                                        <strong>Name:
+                                            <field name="name"/>
+                                        </strong>
+                                    </li>
+                                    <li>
+                                        <strong>Short Code:
+                                            <field name="code"/>
+                                        </strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="stock_store_view_search" model="ir.ui.view">
+        <field name="name">stock.store.search</field>
+        <field name="model">stock.warehouse</field>
+        <field name="arch" type="xml">
+            <search string="stores">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_store_form" model="ir.actions.act_window">
+        <field name="name">Store</field>
+        <field name="res_model">stock.warehouse</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="domain">[('store_warehouse','=',False)]</field>
+        <field name="search_view_id" ref="stock_store_view_search"/>
+        <field name="view_mode">kanban,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('view_store_kanban')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('view_store_form')})]"/>
+    </record>
+
+</odoo>

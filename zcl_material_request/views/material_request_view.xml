@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_material_request_form" model="ir.ui.view">
+        <field name="name">material.request.form</field>
+        <field name="model">material.request</field>
+        <field name="arch" type="xml">
+            <form string="Material Request">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                    <button name="confirm_button_action" id="confirm_button" string="Confirm" type="object" class="oe_highlight" states="draft"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="branch_id"/>
+                            <field name="sale_order_no"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="narration"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Operations" name="operations">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="serial_no"/>
+                                    <field name="items_id"/>
+                                    <field name="description"/>
+                                    <button name="action_request" type="object" string="ADD" class="oe_highlight" attrs="{'invisible': [('qty', '!=', 0)]}"/>
+                                    <field name="requested_to"/>
+                                    <field name="qty"/>
+                                    <field name="state" widget="badge" readonly="1" decoration-muted="state == 'sent'" decoration-info="state == 'confirmed'" decoration-success="state == 'validate'"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_material_request_tree" model="ir.ui.view">
+        <field name="name">material.request.tree</field>
+        <field name="model">material.request</field>
+        <field name="arch" type="xml">
+            <tree string="Material Request">
+                <field name="name" decoration-bf="1"/>
+                <field name="date" optional="show" widget="remaining_days" attrs="{'invisible':[('state', 'in', ('done', 'cancel'))]}"/>
+                <field name="state" optional="show" widget="badge"
+                       decoration-info="state=='draft'" decoration-success="state=='approve'"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_material_request_form" model="ir.actions.act_window">
+        <field name="name">Material Request</field>
+        <field name="res_model">material.request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="domain">[('store_materials','=', True)]</field>
+        <field name="context">{'default_store_materials': True}</field>
+        <!--        <field name="search_view_id" ref="stock_shop_view_search"/>-->
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('view_material_request_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('view_material_request_form')})]"/>
+        <!--        <field name="domain">[('usage','=','internal'),('gulf_tech_custom','=',True)]</field>-->
+    </record>
+
+    <record id="action_material_request_shop_form" model="ir.actions.act_window">
+        <field name="name">Material Request</field>
+        <field name="res_model">material.request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="domain">[('shop_materials','=', True)]</field>
+        <field name="context">{'default_shop_materials': True}</field>
+        <!--        <field name="search_view_id" ref="stock_shop_view_search"/>-->
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('view_material_request_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('view_material_request_form')})]"/>
+        <!--        <field name="domain">[('usage','=','internal'),('gulf_tech_custom','=',True)]</field>-->
+    </record>
+
+<!--    <menuitem id="menu_material_request_root" name="Material Request" parent="zcl_store.menu_action_store_parent"/>-->
+<!--    <menuitem id="menu_material_request" name="Material Request" parent="menu_material_request_root" action="action_material_request_form"/>-->
+<!--    <menuitem id="menu_material_request_shop_root" name="Material Request" parent="zcl_shop.menu_shop_root"/>-->
+<!--    <menuitem id="menu_material_request_shop" name="Material Request" parent="menu_material_request_shop_root" action="action_material_request_shop_form"/>-->
+<!--    <menuitem id="menu_material_request_shop_out" name="Material Request Out" parent="menu_material_request_shop_root" action="material_request_out_action"/>-->
+
+</odoo>

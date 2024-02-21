@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem action="sale_quotation_action" id="menu_sale_quotation_store_form" parent="zcl_shop.menu_shop_sales" name="Quotation"/>
+
+</odoo>

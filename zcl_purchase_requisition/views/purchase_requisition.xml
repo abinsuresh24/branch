@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  Author       :  SAYOOJ T K  -->
+<!--  Copyright(c) :  2023-Present Zinfog Codelabs Pvt Ltd (<https://www.zinfog.com>).  -->
+<!--  License      :  LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).  -->
+
+<odoo>
+    <!--    purchase requisition form view-->
+    <record id="purchase_requisition_view_form" model="ir.ui.view">
+        <field name="name">purchase.requisition.view.form</field>
+        <field name="model">purchase.requisition</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,done"/>
+                    <button name="action_confirm" string="Confirm"
+                            type="object" class="oe_highlight" states="draft"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="branch" invisible="1"/>
+                            <field name="branch_id" readonly="1"/>
+                            <field name="narration"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Main Page">
+                            <field name="line_ids" attrs="{'readonly': [('state', '=', 'done')]}">
+                                <tree editable="bottom">
+                                    <field name="sno" readonly="1" force_save="1"/>
+                                    <field name="product_id"/>
+                                    <field name="description"/>
+                                    <field name="units"/>
+                                    <field name="qty" string="Requested Quantity"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--    purchase requisition tree view-->
+    <record id="purchase_requisition_view_tree" model="ir.ui.view">
+        <field name="name">purchase_requisition.view.tree</field>
+        <field name="model">purchase.requisition</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+
+    ##################   PURCHASE SECTION   #######################
+        <!--    purchase requisition form purchase side view -->
+    <record id="purchase_requisition_view_form_purchase" model="ir.ui.view">
+        <field name="name">purchase.requisition.view.form.purchase</field>
+        <field name="model">purchase.requisition</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="branch_id" readonly="1"/>
+                            <field name="branch" invisible="1"/>
+                            <field name="narration"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Main Page">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="sno" readonly="1" force_save="1"/>
+                                    <field name="product_id"/>
+                                    <field name="description"/>
+                                    <field name="units"/>
+                                    <button name="open_return_wizard" type="object" title="Orders" icon="fa-history" />
+                                    <field name="qty"/>
+                                    <field name="available_qty" string="Available Quantity"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--    purchase requisition tree view-->
+    <record id="purchase_requisition_view_tree_purchase" model="ir.ui.view">
+        <field name="name">purchase_requisition.view.tree</field>
+        <field name="model">purchase.requisition</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="name"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    #######################  ACTIONS  ###################
+
+    <record id="purchase_requisition_action_store" model="ir.actions.act_window">
+        <field name="name">Purchase Requisition</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.requisition</field>
+        <field name="domain">[('shop_true','=',True)]</field>
+        <field name="context">{'default_shop_true': True}</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('purchase_requisition_view_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('purchase_requisition_view_form')})]"/>
+    </record>
+
+     <record id="purchase_requisition_action_shop" model="ir.actions.act_window">
+        <field name="name">Purchase Requisition</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.requisition</field>
+        <field name="domain">[('store_true','=',True)]</field>
+        <field name="context">{'default_store_true': True}</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('purchase_requisition_view_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('purchase_requisition_view_form')})]"/>
+    </record>
+
+    <record id="purchase_requisition_action_purchase" model="ir.actions.act_window">
+        <field name="name">Purchase Requisition</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="domain">[('state','=','done')]</field>
+        <field name="res_model">purchase.requisition</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('purchase_requisition_view_tree_purchase')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('purchase_requisition_view_form_purchase')})]"/>
+        <field name="context">{'create': True}</field>
+    </record>
+</odoo>

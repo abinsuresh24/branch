@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_cash_purchase_root" name="Cash Purchase" parent="zcl_store.menu_action_store_parent"/>
+    <menuitem id="menu_cash_purchase" name="Cash Purchase" parent="menu_cash_purchase_root" action="cash_purchase_store_action"/>
+    <menuitem id="menu_grn_local" name="GRN LOCAL AND IMPORT" parent="menu_cash_purchase_root" action="grn_local_order_action"/>
+    <!--    <menuitem id="menu_internal_do" name="Internal DO" parent="menu_cash_purchase_root" action="internal_do_store_action"/>-->
+    <!--    <menuitem id="menu_project_do" name="Project DO" parent="menu_cash_purchase_root" action="project_do_store_action"/>-->
+
+    <menuitem id="menu_cash_purchase_shop_root" name="Cash Purchase" parent="zcl_shop.menu_shop_root"/>
+    <menuitem id="menu_cash_purchase_shop" name="Cash Purchase" parent="menu_cash_purchase_shop_root" action="cash_purchase_shop_action"/>
+<!--    <menuitem id="menu_grn_local_shop" name="GRN LOCAL AND IMPORT" parent="menu_cash_purchase_shop_root" action="grn_local_order_shop_action"/>-->
+    <!--    <menuitem id="menu_internal_do_shop" name="Internal DO" parent="menu_cash_purchase_shop_root" action="internal_do_shop_action"/>-->
+    <!--    <menuitem id="menu_project_do_shop" name="Project DO" parent="menu_cash_purchase_shop_root" action="project_do_shop_action"/>-->
+
+    <menuitem id="menu_purchase_order_root" name="Purchase" parent="zcl_purchase.menu_purchase_root"/>
+    <menuitem id="menu_purchase_local" name="Purchase Local" parent="menu_purchase_order_root" action="purchase_local_order_action"/>
+    <menuitem id="menu_purchase_import" name="Purchase Import" parent="menu_purchase_order_root" action="purchase_import_order_action"/>
+
+</odoo>

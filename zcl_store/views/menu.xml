@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_action_store_parent" name="Stores" web_icon="zcl_store,static/description/icon.svg" groups="zcl_contacts.group_for_store,zcl_contacts.group_for_store_shop_admin"/>
+
+    <menuitem action="action_store_form" id="menu_action_store_form" parent="menu_action_store_parent" name="Stores" groups="zcl_contacts.group_for_store_shop_admin"/>
+
+    <menuitem id="menu_action_transfer_form" parent="menu_action_store_parent" name="Transfers" groups="zcl_contacts.group_for_store"/>
+    <menuitem action="zcl_contacts.zcl_contact_vendor_action" id="menu_contact_vendor_store" parent="zcl_store.menu_action_store_parent" name="Vendors"/>
+    <menuitem action="zcl_store.category_store_python_action" id="menu_store_contact" parent="menu_action_store_parent" name="Customers"/>
+
+</odoo>

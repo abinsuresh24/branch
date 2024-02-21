@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+    <record id="shop_transfer_tree" model="ir.ui.view">
+        <field name="name">shop.transfer.tree</field>
+        <field name="model">shop.transfer</field>
+        <field name="arch" type="xml">
+            <tree string="Shop Transfer">
+
+                <field name="reference"/>
+            </tree>
+        </field>
+    </record>
+
+        <record id="view_shop_transfer_form" model="ir.ui.view">
+        <field name="name">shop.transfer.form</field>
+        <field name="model">shop.transfer</field>
+        <field name="arch" type="xml">
+
+            <form string="Shops Transfer">
+                <header>
+
+                    <button class="oe_stat_button"
+                            name="action_confirm"
+                            string="Confirm"
+                            type="object"
+                            attrs="{'invisible': [('state', '=', 'requested')]}">
+                    </button>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,requested"/>
+
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="reference"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="branch_id"/>
+                            <field name="requested_to"/>
+<!--                            <field name="location_dest_id" options="{'no_create': True}"-->
+<!--                                   string="Transfer To"/>-->
+                            <field name="location_id" options="{'no_create': True}"
+                                   string="Request From"/>
+
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="narration"/>
+                        </group>
+                    </group>
+                    <notebook>
+                    <page string="Order Lines">
+                        <field name="order_lines" widget="one2many_list" options="{'editable': true}">
+                            <tree editable="bottom">
+                                <field name="serial_no"/>
+                                <field name="items_id"/>
+                                <field name="description"/>
+                                <field name="link_1"/>
+                                <field name="units"/>
+                                <field name="qty"/>
+                                <!-- Add any additional fields you want to display in the One2many lines -->
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+
+
+
+
+
+<!--    <record id="shop_transfer_action_python" model="ir.actions.act_window">-->
+<!--        <field name="name">Shop Transfer</field>-->
+<!--        <field name="res_model">shop.transfer</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--&lt;!&ndash;        <field name="domain">[('sale_types','=', 'do')]</field>&ndash;&gt;-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--        <field name="view_ids" eval="[(5, 0, 0),-->
+<!--                (0, 0, {'view_mode': 'tree', 'view_id': ref('shop_transfer_tree')}),-->
+<!--                (0, 0, {'view_mode': 'form', 'view_id': ref('view_shop_transfer_form')})]"/>-->
+<!--    </record>-->
+
+
+
+    <!--    ACTION FOR VIEW SHOP TRANSFER IN USING PYTHON FUNCTION   -->
+    <record id="shop_transfer_action" model="ir.actions.server">
+        <field name="name">shop.transfer</field>
+        <field name="model_id" ref="zcl_shop.model_shop_transfer"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = model.shop_transfer_action_python()
+        </field>
+    </record>
+
+
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="walk_in_customer_view_form" model="ir.ui.view">
+        <field name="name">walk.in.customer.view.form</field>
+        <field name="model">walkin.customer.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="phone"/>
+                        </group>
+                        <group>
+                            <field name="address"/>
+                            <field name="vat_no"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="walk_in_customer_action" model="ir.actions.act_window">
+        <field name="name">Walk In Customer</field>
+        <field name="res_model">walkin.customer.line</field>
+        <field name="view_mode">form</field>
+    </record>
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_material_request_root" name="Material Request" parent="zcl_store.menu_action_store_parent"/>
+    <menuitem id="menu_material_request" name="Material Request" parent="menu_material_request_root" action="action_material_request_form"/>
+    <menuitem id="menu_material_request_in" name="Material Request In" parent="menu_material_request_root" action="material_request_in_action"/>
+    <menuitem id="menu_material_request_out" name="Material Request Out" parent="menu_material_request_root" action="material_request_store_out_action"/>
+    <menuitem id="menu_material_request_shop_root" name="Material Request" parent="zcl_shop.menu_shop_root"/>
+    <menuitem id="menu_material_request_shop" name="Material Request" parent="menu_material_request_shop_root" action="action_material_request_shop_form"/>
+    <menuitem id="menu_material_request_shop_out" name="Material Request Out" parent="menu_material_request_shop_root" action="material_request_out_action"/>
+    <menuitem id="menu_material_request_shop_in" name="Material Request In" parent="menu_material_request_shop_root" action="material_request_shop_in_action"/>
+</odoo>

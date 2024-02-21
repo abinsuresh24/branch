@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--        Inherited res partner mode for adding pay on account boolean field-->
+        <record id="res_users_form_inherit" model="ir.ui.view">
+            <field name="name">res.users.form.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='signature']" position="after">
+                    <field name="make_store_visible" invisible="1"/>
+                    <field name="make_shop_visible" invisible="1"/>
+                    <field name="branch_w_id" options='{"no_create": True}' domain="[('store_warehouse', '=', False)]" attrs="{'invisible':[('make_store_visible','!=',False)]}"/>
+                    <field name="branch_l_id" options='{"no_create": True}' domain="[('shop_location', '=', True),('usage','=','internal')]" attrs="{'invisible':[('make_shop_visible','!=',False)]}"/>
+                    <field name="cash_memo_receivable_acc"/>
+                    <field name="do_receivable_acc"/>
+                    <field name="cash_receipt_receivable_acc"/>
+                    <field name="sale_return_payable_acc"/>
+                    <field name="tax_account_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

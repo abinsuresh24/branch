@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem action="action_direct_order_sale_order" id="menu_action_do_form" parent="zcl_shop.menu_shop_sales" name="Delivery Orders"/>
+    <menuitem action="action_internal_direct_order_sale_order" id="menu_action_internal_do_form" parent="zcl_shop.menu_shop_sales" name="Internal DO"/>
+    <menuitem action="action_project_direct_order_sale_order" id="menu_action_project_do_form" parent="zcl_shop.menu_shop_sales" name="Project DO"/>
+    <menuitem action="action_cash_sale_sale_order" id="menu_action_cash_sale_form" parent="zcl_shop.menu_shop_sales" name="Cash Sale"/>
+    <menuitem action="action_wh_sale_sale_order" id="menu_action_wh_sale_form" parent="zcl_shop.menu_shop_sales" name="Warehouse Sale"/>
+<!--    <menuitem action="action_approval_sale_order" id="delivery_order_request" parent="zcl_purchase.menu_purchase_root" name="Discount Approval" groups="zcl_purchase.group_for_purchase"/>-->
+</odoo>

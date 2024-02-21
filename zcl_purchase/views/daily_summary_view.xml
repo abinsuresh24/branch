@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_shop_summary_form" model="ir.ui.view">
+        <field name="name">shop.summary.form</field>
+        <field name="model">shop.summary</field>
+        <field name="arch" type="xml">
+            <form string="Shop Summary">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="shops_name_id"/>
+                            <field name="company_id"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="cash_memo" string="Cash Memo">
+                            <field name="cash_memo_summary_ids" widget="many2many_tree"
+                                   options="{'tree_view_ref': 'zcl_cash_memo.view_cash_memo_tree'}"
+                                   attrs="{'readonly': True}">
+
+                            </field>
+                        </page>
+                        <page name="internal_do" string="Internal DO">
+                            <field name="internal_do_summary_ids" widget="many2many_tree"
+                                   options="{'tree_view_ref': 'zcl_direct_order.view_direct_order_sale_order_tree'}"
+                                   attrs="{'readonly': True}"/>
+                        </page>
+                        <page name="project_do" string="Project DO">
+                            <field name="project_do_summary_ids" widget="many2many_tree"
+                                   options="{'tree_view_ref': 'zcl_direct_order.view_direct_order_sale_order_tree'}"
+                                   attrs="{'readonly': True}"/>
+                        </page>
+                        <page name="direct_order" string="Direct Order">
+                            <field name="direct_order_summary_ids" widget="many2many_tree"
+                                   options="{'tree_view_ref': 'zcl_direct_order.view_direct_order_sale_order_tree'}"
+                                   attrs="{'readonly': True}"/>
+                        </page>
+                        <page name="cash_sale" string="Cash Sale">
+                            <field name="cash_sale_summary_ids" widget="many2many_tree"
+                                   options="{'tree_view_ref': 'zcl_direct_order.view_direct_order_sale_order_tree'}"
+                                   attrs="{'readonly': True}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_shop_summary_list" model="ir.ui.view">
+        <field name="name">shop.summary.list</field>
+        <field name="model">shop.summary</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="shops_name_id"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_daily_summary" model="ir.actions.act_window">
+        <field name="name">Daily Summary</field>
+        <field name="res_model">shop.summary</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('view_shop_summary_list')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('view_shop_summary_form')})]"/>
+    </record>
+
+</odoo>

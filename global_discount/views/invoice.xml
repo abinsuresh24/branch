@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="inherit_invoice_view_forms_fabro" model="ir.ui.view">
+        <field name="name">invoice.form.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[hasclass('oe_invoice_lines_tab')]" position="after">
+                <group name="summary_group">
+                    <p style="font-size:15px">
+                        <strong>
+                            <h2>Summary</h2>
+                        </strong>
+                    </p>
+                    <br/>
+                    <label for="universal_discount_enable"/>
+                    <div name="discount_div">
+                        <field name="universal_discount_enable" class="oe_inline"
+                           attrs="{'readonly':[('state', 'in', ['posted' ,'cancel'])]}"/>
+                        <button name="apply_discount_items"
+                                type="object"
+                                class="btn-link oe_inline"
+                                string="Update Items"
+                                icon="fa-refresh" context="{'avoid_warning': True}"/>
+                    </div>
+                    <field name="discount_apply" invisible="1"/>
+                    <field name="universal_discount_type" string="Discount Type"
+                           attrs="{'invisible': [('universal_discount_enable', '!=', True)], 'readonly':[('state', 'in', ['posted' ,'cancel'])]}"/>
+                    <field name="universal_discount_rate" string="Discount Rate"
+                           attrs="{'invisible': ['|',('universal_discount_type', '!=', 'percent'),('universal_discount_enable', '!=', True)],'readonly':[('state', 'in', ['posted' ,'cancel'])]}"/>
+                    <field name="universal_discount_amount" string="Discount Amount"
+                           attrs="{'invisible': ['|',('universal_discount_type', '!=', 'amount'),('universal_discount_enable', '!=', True)],'readonly':[('state', 'in', ['posted' ,'cancel'])]}"/>
+                </group>
+            </xpath>
+
+            <xpath expr="//group[hasclass('oe_invoice_lines_tab')]" position="replace">
+                <group colspan="8">
+                    <field name="narration" placeholder="Terms and Conditions" colspan="2" nolabel="1"/>
+                </group>
+                <!-- Totals (only invoices / receipts) -->
+                <group colspan="4">
+                    <group class="oe_subtotal_footer oe_right"
+                           attrs="{'invisible': ['|', ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')),
+                                                                       ('payment_state' ,'=', 'invoicing_legacy')]}">
+
+                        <field name="tax_totals" widget="account-tax-totals-field" nolabel="1" colspan="2"
+                               attrs="{'readonly': ['|', ('state', '!=', 'draft'), '&amp;', ('move_type', 'not in', ('in_invoice', 'in_refund')), ('quick_edit_mode', '=', False)]}"/>
+
+                        <field name="invoice_payments_widget" colspan="2" nolabel="1" widget="payment"/>
+                        <field name="amount_residual" class="oe_subtotal_footer_separator"
+                               attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                        <field name="universal_total_display_discount_amount" string="Universal Discount" colspan="2"
+                               readonly="1"
+                               attrs="{'invisible': [('universal_discount_enable', '!=', True)]}"/>
+                    </group>
+                    <field name="invoice_outstanding_credits_debits_widget"
+                           class="oe_invoice_outstanding_credits_debits"
+                           colspan="2" nolabel="1" widget="payment"
+                           attrs="{'invisible': ['|', ('state', '!=', 'posted'), ('move_type', 'in', ('out_receipt', 'in_receipt'))]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

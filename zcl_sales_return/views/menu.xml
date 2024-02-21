@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <menuitem id="sale_return_root"-->
+<!--              name="Sale Return"-->
+<!--              action="action_sale_return"-->
+<!--              sequence="25"/>-->
+
+    <menuitem id="sale_return"
+              name="Sale Return"
+              parent="zcl_shop.menu_shop_sales"
+              action="action_sale_return"
+              sequence="25"/>
+
+    <menuitem id="menu_cash_memo_return"
+              name="Cash Memo Return"
+              parent="zcl_shop.menu_shop_sales"
+              action="action_cash_memo_return"
+              sequence="26"/>
+
+</odoo>
